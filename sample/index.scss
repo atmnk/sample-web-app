@@ -1,0 +1,102 @@
+
+.LLInput {
+  width: 100%;
+  padding: 0.10em;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  text-align:center;
+}
+.LLTextArea{
+  width: 100%;
+  padding: 0.10em;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+.LLInputContainer{
+  padding-left:0.6em;
+  padding-right:0.6em;
+  padding-top:0.3em;
+  padding-bottom:0.3em;
+  box-sizing: border-box;
+}
+.ButtonsContainer{
+  padding-left:0.6em;
+  padding-right:0.6em;
+  padding-top:0.3em;
+  padding-bottom:0.3em;
+}
+.Submit {
+  width: 100%;
+  padding: 0.10em;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  background-color: green;
+  color:white;
+
+}
+.form {
+  background-color: coral;
+  margin: auto;
+  .title {
+    width: 100%;
+    padding: 0.10em;
+    font-size: 1.5em;
+    box-sizing: border-box;
+    text-align:center;
+    color:white;
+  }
+  padding-top:0.3em;
+  padding-bottom:0.3em;
+}
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  border: 2px solid red;
+  background-color: yellow;
+  z-index:1000
+}
+.Header{
+  background-color: aqua;
+  padding:1.5em;
+}
+.memberRow{
+  width: 100%;
+  padding: 0.10em;
+  font-size: 1.5em;
+  box-sizing: border-box;
+}
+.PublicPage{
+  box-sizing: border-box;
+  background-color: honeydew;
+  height: 100%;
+  width: 100%;
+}
+.UserPage{
+  box-sizing: border-box;
+  background-color:yellow;
+  height: 100%;
+  width: 100%;
+}
+.outer {
+  display: table;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+.pageContent{
+  height: 100%;
+  width: 100%;
+}
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+}

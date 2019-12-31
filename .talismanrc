@@ -1,0 +1,23 @@
+fileignoreconfig:
+- filename: sample/next-env.d.ts
+  checksum: 64d28518bfecda171c1bcbcd09552c52c2f7cdb5a0273f422e4d73118cbbeffc
+  ignore_detectors: []
+- filename: sample/package-lock.json
+  checksum: 67403ae31e2725a6fe456eef176e29a1a84ce6e10190fe4c1eb8f62cc7357a56
+  ignore_detectors: []
+- filename: kotlin-tests/src/test/kotlin/io/github/atmaramnaik/seleniumkotlin/data/User.kt
+  checksum: d612bfe4714b739f3b7289de26850873f72c064f056a73083b633fbbe69a74d2
+  ignore_detectors: []
+- filename: kotlin-tests/src/test/kotlin/io/github/atmaramnaik/seleniumkotlin/webapp/pages/LoginPage.kt
+  checksum: e5f2c6e87dba5d00c3674e47a00b2316ba340877455f471549f5ce15d6ee5437
+  ignore_detectors: []
+- filename: kotlin-tests/src/test/kotlin/io/github/atmaramnaik/seleniumkotlin/webapp/pages/RegistrationPage.kt
+  checksum: aa28ae5ff7d63ec1d961fff1b24c0d99261fce526a31f7603653c0aec4ce6bc0
+  ignore_detectors: []
+- filename: sample/data/repo/UserRepo.ts
+  checksum: f661eab679f5dfed7928020450e317ec4377fcca090a7184e4b044f213c0b5af
+  ignore_detectors: []
+- filename: sample/services/user.ts
+  checksum: 9713cc43ef9fd4721fb9896e6411c16e7abbceb30665f75b04406fbd1b75a8ea
+  ignore_detectors: []
+

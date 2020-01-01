@@ -23,9 +23,11 @@ export default class UserRepository{
             [username,designation,company])
     }
     get(username:string):Promise<JobDetails>{
-        return this.dao.get<JobDetails>(
-            `SELECT * FROM job_details WHERE username = ?`,
-            [username])
+        return this.createTable().then(()=> {
+            return this.dao.get<JobDetails>(
+                `SELECT * FROM job_details WHERE username = ?`,
+                [username])
+        })
     }
     delete(username:string){
         return this.createTable().then(()=>{

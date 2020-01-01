@@ -1,17 +1,12 @@
 import {LoginFormDetails} from "../../../components/LoginForm";
 import axios, {AxiosError} from 'axios'
 import {Dispatch} from "redux";
-// import {SOMETHING_WENT_WRONG} from "../api/actions";
 import cookie from 'js-cookie'
 import {RegistrationFormDetails} from "../../../components/RegistrationForm";
 import {
     INVALID_CREDENTIALS,
-    LOGGED_IN, LOGGED_OUT, loggedOut,
-    MY_DETAILS_LOADED,
-    MY_JD_LOADED, myBlogLoaded, myBlogsLoaded,
-    myDetailsLoaded,
-    MyDetailsLoadedAction, myJDLoaded,
-    MyJDLoadedAction, somethingWenWrong
+    LOGGED_IN, loggedOut, myBlogLoaded, myBlogsLoaded,
+    myDetailsLoaded, myJDLoaded, somethingWenWrong
 } from "../../actions";
 import {UserBasics} from "../../../pages/api/user/[user]";
 import JobDetails from "../../../data/models/JobDetails";

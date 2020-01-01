@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PublicPage from "../../layouts/Public";
 import Router from "next/router";
-import RegistrationForm from "../../components/RegistrationForm";
+import {RegistrationFormContainer, RegistrationReduxForm} from "../../components/RegistrationForm";
 import {register} from "../../states/data/me/actions";
 
 interface IProps {
-    register: any
     username: string,
 }
 
@@ -31,11 +30,9 @@ class RegistrationPage extends React.Component<IProps, IState> {
     }
 
     render() {
-        const { register } = this.props
-
         return (
             <PublicPage>
-                <RegistrationForm onSubmit={register}/>
+                <RegistrationFormContainer/>
             </PublicPage>
         )
     }
@@ -45,6 +42,5 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    register: bindActionCreators(register, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPage)

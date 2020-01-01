@@ -3,13 +3,17 @@ import { reduxForm, InjectedFormProps, Field } from 'redux-form';
 import {LLInput} from "./LLInput";
 import {Form} from "./Form";
 import {LLTextArea} from "./LLTextArea";
+import {bindActionCreators} from "redux";
+import {saveBlog} from "../states/data/me/actions";
+import {connect} from "react-redux";
+import {Container} from "./Container";
 export interface BlogFormDetails {
     title: string;
     content: string;
 }
 interface IProps {
 }
-class BlogForm extends React.Component<InjectedFormProps<BlogFormDetails>>{
+export class BlogForm extends React.Component<InjectedFormProps<BlogFormDetails>>{
     render(){
         const { pristine, submitting, reset, handleSubmit } = this.props;
         return (<Form onSubmit={handleSubmit} className="form">
@@ -37,6 +41,13 @@ class BlogForm extends React.Component<InjectedFormProps<BlogFormDetails>>{
         </Form>)
     }
 }
-export default reduxForm<BlogFormDetails, IProps>({
+export const BlogReduxForm = reduxForm<BlogFormDetails, IProps>({
     form: 'blogForm',
 })(BlogForm);
+
+const mapStateToProps = (state) => ({
+})
+const mapDispatchToProps = (dispatch) => ({
+    onSubmit:bindActionCreators(saveBlog,dispatch)
+})
+export const BlogFormContainer =  connect(mapStateToProps, mapDispatchToProps)(Container(BlogReduxForm))

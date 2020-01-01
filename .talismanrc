@@ -20,4 +20,6 @@ fileignoreconfig:
 - filename: sample/services/user.ts
   checksum: 9713cc43ef9fd4721fb9896e6411c16e7abbceb30665f75b04406fbd1b75a8ea
   ignore_detectors: []
-
+- filename: sample/package-lock.json
+  checksum: bd2988d835b5147235a8512bb800e86ca6ddb5fb9038a4a2841725b9caafa3f5
+  ignore_detectors: []

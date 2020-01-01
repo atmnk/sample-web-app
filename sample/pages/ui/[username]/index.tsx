@@ -12,6 +12,7 @@ import {loadMember,loadMemberBlogs} from "../../../states/data/members/actions";
 import {toUserBasics} from "../../../data/models/User";
 import {toBlogBasic} from "../../../data/models/Blog";
 import Link from "next/link";
+import {Blogs} from "../../../components/Blogs";
 interface IProps {
     members:Member[],
     member:string,
@@ -60,22 +61,13 @@ class UserBlogsPageWithRouter extends React.Component<IProps, IState> {
         let currentUser = members.find(u => u.basic.username == member)
         let userdata = <span>{(currentUser && currentUser.basic) ? currentUser.basic.name : 'Loading...'}</span>
         let content = <div>Data for <span id="name">{userdata}</span></div>
-        let blogContents = <div>Loading..</div>
-        if(blogs){
-            blogContents = <div>{blogs.map(blog=>{
-                return (<div key={blog.basic.id.toString()} >
-                    <Link href="/ui/blog/[id]" as={`/ui/blog/${blog.basic.id}`}>
-                        <a id={blog.basic.id.toString()} className="blogLink">{blog.basic.title}</a>
-                    </Link>
-                </div>)})}
-            </div>
-        }
+
 
         return (<PublicPage>
             <div>{content}</div>
             <div>
                 Blogs by {userdata}
-            <div>{blogContents}</div>
+                <Blogs blogs={blogs}/>
             </div>
         </PublicPage>)
     }

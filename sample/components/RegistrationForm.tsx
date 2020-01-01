@@ -2,6 +2,10 @@ import * as React from 'react';
 import { reduxForm, InjectedFormProps, Field } from 'redux-form';
 import {LLInput} from "./LLInput";
 import {Form} from "./Form";
+import {bindActionCreators} from "redux";
+import {register} from "../states/data/me/actions";
+import {connect} from "react-redux";
+import {Container} from "./Container";
 export interface RegistrationFormDetails {
     username: string;
     password: string;
@@ -9,6 +13,7 @@ export interface RegistrationFormDetails {
 }
 interface IProps {
 }
+
 class RegistrationForm extends React.Component<InjectedFormProps<RegistrationFormDetails>>{
     render(){
         const { pristine, submitting, reset, handleSubmit } = this.props;
@@ -45,6 +50,14 @@ class RegistrationForm extends React.Component<InjectedFormProps<RegistrationFor
         </Form>)
     }
 }
-export default reduxForm<RegistrationFormDetails, IProps>({
+export const RegistrationReduxForm =  reduxForm<RegistrationFormDetails, IProps>({
     form: 'registrationForm',
 })(RegistrationForm);
+
+const mapStateToProps = (state) => ({
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    onSubmit: bindActionCreators(register, dispatch)
+})
+export const RegistrationFormContainer =  connect(mapStateToProps, mapDispatchToProps)(Container(RegistrationReduxForm))

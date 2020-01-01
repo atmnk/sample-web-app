@@ -21,12 +21,18 @@ export default class UserRepository{
             [username,name,password])
     }
     get(username:string):Promise<User>{
-        return this.dao.get<User>(
-            `SELECT * FROM users WHERE username = ?`,
-            [username])
+        return this.createTable().then(()=> {
+            return this.dao.get<User>(
+                    `SELECT *
+                     FROM users
+                     WHERE username = ?`,
+                [username])
+        })
     }
     all():Promise<(User)[]>{
-        return this.dao.all<User>('SELECT * FROM users')
+        return this.createTable().then(()=> {
+            return this.dao.all<User>('SELECT * FROM users')
+        })
     }
     delete(username:string){
         return this.dao.delete('DELETE FROM users where username = ?',[username])

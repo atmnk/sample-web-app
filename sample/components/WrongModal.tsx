@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import React from "react";
+import * as React from 'react'
 import {ack} from "../states/api/actions";
 import {bindActionCreators} from "redux";
 interface IProps {

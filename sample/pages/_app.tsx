@@ -2,7 +2,7 @@ import App, {AppInitialProps} from 'next/app'
 import { Provider } from 'react-redux'
 import withRedux, {AppProps} from 'next-redux-wrapper'
 import { initStore } from '../store'
-import cookie from 'js-cookie'
+import * as cookie from 'js-cookie'
 import {Router} from "next/router";
 import {check} from "./api/user/profile";
 import {LOGGED_IN, MY_DETAILS_LOADED} from "../states/actions";

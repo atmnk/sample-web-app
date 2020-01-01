@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { connect } from 'react-redux'
 import {Details} from "../states/data/me/state";
 
@@ -9,12 +9,12 @@ interface Props {
 interface IState {
 
 }
-class JD extends React.Component<Props, Props> {
+export class JD extends React.Component<Props, Props> {
     render() {
         const {  details,username } = this.props
         return (
-            <div>
-                { username && details && details.company && <div>
+            <div id="jobDetails">
+                { username && details && <div>
                     <div>Job Details</div>
                     <div>Company:<span id="company">{details.company}</span></div>
                     <div>Designation<span id="designation">{details.designation}</span></div>

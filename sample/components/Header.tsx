@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from "react";
+import * as React from 'react'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Details} from "../states/data/me/state";

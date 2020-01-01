@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { connect } from 'react-redux'
 import UserPage from "../../layouts/User";
 import { Me} from "../../states/data/me/state";
@@ -15,7 +15,7 @@ import {toBlogBasic} from "../../data/models/Blog";
 import {BlogState} from "../../states/states";
 import {BlogFormContainer, BlogReduxForm} from "../../components/BlogForm";
 import {JDContainer} from "../../components/JD";
-import {Blogs} from "../../components/Blogs";
+import {BlogEntries} from "../../components/BlogEntries";
 interface Props extends Me {
     deleteMyProfile:any,
     blogs:BlogState[]
@@ -65,7 +65,7 @@ class MyDetailsPage extends React.Component<Props, Props> {
                     <JDContainer/>
                     {username && <button id="unregister" onClick={deleteMyProfile} className="Submit">Unregister</button>}
                     <BlogFormContainer/>
-                    <Blogs blogs={blogs}/>
+                    <BlogEntries blogs={blogs}/>
                 </div>
             </UserPage>
 

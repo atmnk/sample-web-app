@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {connect, useSelector} from 'react-redux'
 import {bindActionCreators, Store} from 'redux'
 
@@ -12,7 +12,7 @@ import {loadMember,loadMemberBlogs} from "../../../states/data/members/actions";
 import {toUserBasics} from "../../../data/models/User";
 import {toBlogBasic} from "../../../data/models/Blog";
 import Link from "next/link";
-import {Blogs} from "../../../components/Blogs";
+import {BlogEntries} from "../../../components/BlogEntries";
 interface IProps {
     members:Member[],
     member:string,
@@ -67,7 +67,7 @@ class UserBlogsPageWithRouter extends React.Component<IProps, IState> {
             <div>{content}</div>
             <div>
                 Blogs by {userdata}
-                <Blogs blogs={blogs}/>
+                <BlogEntries blogs={blogs}/>
             </div>
         </PublicPage>)
     }

@@ -6,11 +6,13 @@ class BlogPage(driver: WebDriver) :SampleBasePage(driver) {
     val titleLabel by this css("#title")
     val contentLabel by this css("#content")
     fun assertTitle(title:String):BlogPage{
-        assert(titleLabel.text.equals(title))
-        return this
+        return page after {
+            check element titleLabel isWithText title
+        }
     }
     fun assertContent(content:String):BlogPage{
-        assert(contentLabel.text.equals(content))
-        return this;
+        return page after {
+            check element contentLabel isWithText content
+        }
     }
 }

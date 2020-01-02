@@ -6,7 +6,7 @@ interface IProps {
 
 interface IState {}
 
-class AboutPage extends React.Component<IProps, IState> {
+export default class AboutPage extends React.Component<IProps, IState> {
     render() {
         return (
             <PublicPage>
@@ -17,10 +17,3 @@ class AboutPage extends React.Component<IProps, IState> {
         )
     }
 }
-
-const mapStateToProps = (state) => ({
-})
-const mapDispatchToProps = (dispatch) => ({
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AboutPage)

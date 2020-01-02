@@ -1,6 +1,5 @@
 package io.github.atmaramnaik.seleniumkotlin.webapp.pages
 
-import io.github.atmaramnaik.seleniumkotlin.webapp.PageFactoryRepository
 import org.openqa.selenium.WebDriver
 
 class MembersPage(driver: WebDriver) :SampleBasePage(driver),Launchable {
@@ -8,16 +7,13 @@ class MembersPage(driver: WebDriver) :SampleBasePage(driver),Launchable {
     override val partialUrl: String
         get() = "/members"
     fun navigateToMember(member:String):MemberPage{
-        members.find {
-            it.text == member
-        }!!.click()
-        return PageFactoryRepository.page(driver)
+        return page after {
+            click first members withText member
+        }
     }
     fun assertMembers(memberNames:List<String>):MembersPage{
-        assert(members.size==memberNames.size)
-        members.forEach {
-            assert(memberNames.contains(it.text))
+        return page after {
+            check elements members matchingTextExactly memberNames
         }
-        return this;
     }
 }

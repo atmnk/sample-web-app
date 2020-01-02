@@ -48,12 +48,8 @@ class Header extends React.Component<IProps, IState> {
 const mapStateToProps = (state) => ({
     username: state.data.me.username,
     details: state.data.me.details,
-    // user:state.login.user,
-    // payload:state.login.payload,
-    // loading:state.login.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    // profile:bindActionCreators(profile, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

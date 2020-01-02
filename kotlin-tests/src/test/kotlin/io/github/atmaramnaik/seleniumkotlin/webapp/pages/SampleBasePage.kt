@@ -1,13 +1,20 @@
 package io.github.atmaramnaik.seleniumkotlin.webapp.pages
 
+import io.github.atmaramnaik.seleniumkotlin.webapp.PageFactoryRepository
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
-import kotlin.reflect.KProperty
 
 abstract class SampleBasePage(val driver: WebDriver) {
+    val page:PageProvide
+    val click=Click()
+    val check=Checker()
+    val type=Type()
+    init {
+        page = PageProvide(driver);
+    }
     val slow=500L
     fun close(){
         driver.quit()
@@ -103,5 +110,85 @@ abstract class SampleBasePage(val driver: WebDriver) {
             return driver.findElement(By.xpath(selector))
         }
 
+    }
+    class PageProvide(val driver: WebDriver){
+        infix inline fun <reified T : SampleBasePage>after(block:()->Unit):T{
+            block()
+            return PageFactoryRepository.page(driver)
+        }
+    }
+    class Checker(){
+        infix fun OneOfElement(elements: List<WebElement>):ListCheckContext{
+            return ListCheckContext(elements,Match.ANY_ONE)
+        }
+        infix fun element(element:WebElement): ElementCheckContext {
+            return ElementCheckContext(element)
+        }
+        infix fun elements(elements: List<WebElement>):AllElementsListCheckContext{
+            return AllElementsListCheckContext(elements)
+        }
+    }
+    abstract class CheckContext(){
+    }
+    abstract class ElementMatcherCheckContext(){
+        abstract infix fun isWithText(text:String)
+    }
+    class ElementCheckContext(val element:WebElement):ElementMatcherCheckContext(){
+        override fun isWithText(text: String) {
+            assert(element.text == text)
+        }
+
+    }
+    class AllElementsListCheckContext(val elements:List<WebElement>):CheckContext(){
+        infix fun matchingTextExactly(values:List<String>){
+            assert(elements.size == values.size){
+                elements.forEach {
+                    assert(values.contains(it.text))
+                }
+            }
+        }
+    }
+    class ListCheckContext(val elements: List<WebElement>, val match:Match):ElementMatcherCheckContext(){
+        override infix fun isWithText(text:String){
+            assert(match){
+                it.text == text
+            }
+        }
+        fun assert(match:Match,block:(WebElement)->Boolean){
+            if(match == Match.ANY_ONE){
+                assert(elements.find(block) != null)
+            } else {
+                elements.forEach{
+                    assert(block(it))
+                }
+            }
+        }
+    }
+    enum class Match{
+        ANY_ONE,
+        ALL
+    }
+    class Click(){
+        infix fun first(elements:List<WebElement>):ClickContext{
+            return ClickContext(elements);
+        }
+        infix fun on(element: WebElement){
+            element.click()
+        }
+    }
+    class Type(){
+        infix fun string(text:String):TypeContext{
+            return TypeContext(text)
+        }
+    }
+    class TypeContext(val text: String){
+        infix fun within(element: WebElement){
+            element.sendKeys(text)
+        }
+    }
+    class ClickContext(val elements:List<WebElement>){
+        infix fun withText(text: String){
+            elements.find { it.text == text }!!.click()
+        }
     }
 }

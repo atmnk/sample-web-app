@@ -1,6 +1,5 @@
 package io.github.atmaramnaik.seleniumkotlin.webapp.pages
 
-import io.github.atmaramnaik.seleniumkotlin.webapp.PageFactoryRepository
 import org.openqa.selenium.WebDriver
 
 class RegistrationPage(driver: WebDriver) :SampleBasePage(driver),Launchable {
@@ -13,11 +12,12 @@ class RegistrationPage(driver: WebDriver) :SampleBasePage(driver),Launchable {
         get() = "/register"
 
     fun register(username:String,name:String,password:String): MyDetailsPage {
-        userNameTextBox.sendKeys(username)
-        nameTextBox.sendKeys(name)
-        passwordTextBox.sendKeys(password)
-        submitButton.click()
-        return PageFactoryRepository.page<MyDetailsPage>(driver)
+        return page after {
+            type string username within userNameTextBox
+            type string name within nameTextBox
+            type string password within passwordTextBox
+            click on submitButton
+        }
     }
 
 }

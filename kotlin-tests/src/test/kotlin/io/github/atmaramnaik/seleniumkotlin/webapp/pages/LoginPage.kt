@@ -1,6 +1,5 @@
 package io.github.atmaramnaik.seleniumkotlin.webapp.pages
 
-import io.github.atmaramnaik.seleniumkotlin.webapp.PageFactoryRepository
 import org.openqa.selenium.WebDriver
 
 class LoginPage(driver: WebDriver) :SampleBasePage(driver),Launchable {
@@ -10,20 +9,23 @@ class LoginPage(driver: WebDriver) :SampleBasePage(driver),Launchable {
     val errorLabel by this css("#error")
 
     fun login(username:String,password:String):MyDetailsPage{
-        userNameTextBox.sendKeys(username)
-        passwordTextBox.sendKeys(password)
-        loginButton.click()
-        return PageFactoryRepository.page<MyDetailsPage>(driver)
+        return page after {
+            type string username within userNameTextBox
+            type string password within passwordTextBox
+            click on loginButton
+        }
     }
     fun assertError(message:String):LoginPage{
-        assert(errorLabel.text.equals(message))
-        return this;
+        return page after {
+            check element errorLabel isWithText message
+        }
     }
     fun loginWithInvalidCredentials(username:String,password:String):LoginPage{
-        userNameTextBox.sendKeys(username)
-        passwordTextBox.sendKeys(password)
-        loginButton.click()
-        return this
+        return page after {
+            type string username within userNameTextBox
+            type string password within passwordTextBox
+            click on loginButton
+        }
     }
 
     override val partialUrl: String

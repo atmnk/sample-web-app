@@ -1,7 +1,7 @@
 import {LoginFormDetails} from "../../../components/LoginForm";
 import axios, {AxiosError} from 'axios'
 import {Dispatch} from "redux";
-import cookie from 'js-cookie'
+import * as cookie from 'js-cookie'
 import {RegistrationFormDetails} from "../../../components/RegistrationForm";
 import {
     INVALID_CREDENTIALS,

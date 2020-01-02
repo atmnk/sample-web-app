@@ -1,4 +1,5 @@
 import App, {AppInitialProps} from 'next/app'
+import * as React from "react";
 import { Provider } from 'react-redux'
 import withRedux, {AppProps} from 'next-redux-wrapper'
 import { initStore } from '../store'
@@ -15,7 +16,7 @@ export interface SamplePageContext extends NextPageContext{
     isServer:boolean
 }
 class SampleApp extends App<MyAppProps> {
-    static async getInitialProps({ Component, ctx,router }) {
+    static async getInitialProps({ Component, ctx }) {
         let username=null
         if(ctx.isServer){
             username=check(checkServerSideCookie(ctx))
@@ -28,20 +29,6 @@ class SampleApp extends App<MyAppProps> {
                 ? await Component.getInitialProps(ctx)
                 : {})
 
-        }
-    }
-    static isOnPage(ctx:any,router:Router,uri:string):boolean{
-        if(ctx.req){
-            return ctx.url==uri
-        } else {
-            return router.pathname == uri
-        }
-    }
-    static isOnPath(ctx:any,router:Router,uri:string):boolean{
-        if(ctx.req){
-            return ctx.req.url.startsWith(uri)
-        } else {
-            return router.pathname.startsWith(uri)
         }
     }
     render() {
